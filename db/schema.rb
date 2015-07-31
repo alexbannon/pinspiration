@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 20150731181456) do
   create_table "comments", force: :cascade do |t|
     t.string  "content"
     t.integer "user_id"
-    t.integer "pinboard_id"
+    t.integer "pin_id"
   end
 
-  add_index "comments", ["pinboard_id"], name: "index_comments_on_pinboard_id", using: :btree
+  add_index "comments", ["pin_id"], name: "index_comments_on_pin_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "pinboards", force: :cascade do |t|
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150731181456) do
     t.string "email"
   end
 
-  add_foreign_key "comments", "pinboards"
+  add_foreign_key "comments", "pins"
   add_foreign_key "comments", "users"
   add_foreign_key "pinboards", "users"
   add_foreign_key "pins", "pinboards"
